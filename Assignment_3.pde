@@ -219,15 +219,16 @@ public void createButtons() {
   float r = 0.1f;
   int yPad = 10;
   int xPad = 15;
-  float x = width/2;
+  
   float y = height * (1-r) - yPad;
   float w =  width * r + xPad;
+  float x = width/2 - w/2;
   float h =  height * r;
   String label;
   if (defaultType == CurveType.LINEAR) {
-    label = "Type: Bezier";
+    label = "Show Bezier";
   } else {
-    label = "Type: Linear";
+    label = "Show Linear";
   }
   chartTypeButton = new ResponsiveButton(x, y, w, h, label);
 }
