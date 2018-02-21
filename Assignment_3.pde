@@ -92,7 +92,11 @@ void mousePressed() {
       createChart();
       return;
     } else if (indicator.hovered()) {
-      chart.toggleDimensionOrder(i);
+	  descendingDimensions = chart.getDescendingDimensions();
+	  descendingDimensions[i] = !descendingDimensions[i];
+	  bRectPoints = chart.getBRectPoints();
+	  createChart();
+      //chart.toggleDimensionOrder(i);
     }
   }
 }

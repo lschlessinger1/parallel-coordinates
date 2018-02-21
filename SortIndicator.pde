@@ -20,8 +20,8 @@ class SortIndicator {
   }
   
   void drawSelf(PGraphics canvas) {
-    canvas.fill(defaultColor);
-    canvas.triangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+    fill(defaultColor);
+    triangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
   }
   
   float triangleArea(Point a, Point b, Point c) {
