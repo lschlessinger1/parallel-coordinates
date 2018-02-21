@@ -9,13 +9,13 @@ class Chart {
   float[] minVals, maxVals;
   // by default select the first feature dimension
   int selectedDimension;
-  CurveType type;
+  int type;
   // for now, just save boolean array of orders for each dimension and all bounding rects
   boolean[] descendingDimensions;
   Point[][] bRectPoints;
   
   Chart(PGraphics mainCanvas, PGraphics selectedBRectCanvas, PGraphics tooltipCanvas, PGraphics selectedLines, String labelName, String[] featureNames, 
-  String[] labels, float[][] features, int selectedDimension, boolean[] descendingDims, Point[][] bRectPositions, CurveType defaultType) {
+  String[] labels, float[][] features, int selectedDimension, boolean[] descendingDims, Point[][] bRectPositions, int defaultType) {
     // set chart title
     chartTitle = "Parallel Coordinates";
     // set chart width and chart height
@@ -115,7 +115,7 @@ class Chart {
     return -margin + chartHeight + yShift;
   }
   
-  ChartData[] createChartData(DataPoint[] dataPoints, CurveType type, Axis[] axisArr, float[] minVals, float[] maxVals) {
+  ChartData[] createChartData(DataPoint[] dataPoints, int type, Axis[] axisArr, float[] minVals, float[] maxVals) {
     int n = dataPoints.length;
     ChartData[] chartDataArr = new ChartData[n];
     
@@ -158,7 +158,7 @@ class Chart {
   
   void checkCurvesHovered() {
     tooltipCanvas.beginDraw();
-    tooltipCanvas.clear();
+    //tooltipCanvas.clear();
     tooltipCanvas.endDraw();
     ArrayList<Curve> curvesHovered = new ArrayList<Curve>(chartData.length);
     for (int i = 0; i < chartData.length; i++) {
@@ -201,7 +201,7 @@ class Chart {
     // first update the bounding rect
     // (if need be, change selected bounding rect)
     Axis selectedAxis = axes[selectedDimension];
-    topCanvas.clear();
+    //topCanvas.clear();
     boolean selected = true;
     boolean descending = selectedAxis.descending;
     
@@ -261,7 +261,7 @@ class Chart {
   void moveBRect(Point startPoint, int draggingBRectAxisNum) {
     Axis selectedAxis = axes[draggingBRectAxisNum];
     topCanvas.beginDraw();
-    topCanvas.clear();
+    //topCanvas.clear();
     topCanvas.endDraw();
 
     boolean selected = true;
@@ -284,8 +284,8 @@ class Chart {
   }
   
   void toggleDimensionOrder(int dimension) {
-    mainCanvas.clear();
-    topCanvas.clear();
+    //mainCanvas.clear();
+    //topCanvas.clear();
     descendingDimensions[dimension] = !descendingDimensions[dimension];
     axes = createAxes(featureNames, minVals, maxVals, bRectPoints);
     chartData = createChartData(points, type, axes, minVals, maxVals);
@@ -380,12 +380,11 @@ class Chart {
   }
   
   void drawChart() {
-    selectedLines.beginDraw();
-    selectedLines.clear();
-    selectedLines.endDraw();
+
     drawChartTitle();
     drawAxes(mainCanvas, topCanvas);
     drawChartData(mainCanvas, topCanvas);
+
     // always draw bounding rect last
     image(mainCanvas, 0, 0);
     image(topCanvas, 0, 0);
@@ -438,11 +437,11 @@ class Chart {
       }
 
     }        
-    tooltipCanvas.beginDraw(); 
-    tooltipCanvas.fill(0);
-    tooltipCanvas.textSize(14);
+    //tooltipCanvas.beginDraw(); 
+    fill(0);
+    textSize(14);
     float pad = 5;
-    tooltipCanvas.text(tooltipText, mouseX, mouseY - pad);
-    tooltipCanvas.endDraw();
+    text(tooltipText, mouseX, mouseY - pad);
+   // tooltipCanvas.endDraw();
   }
 }

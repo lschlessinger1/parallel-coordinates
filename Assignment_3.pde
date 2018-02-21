@@ -22,7 +22,7 @@ int draggingBRectAxisNum = -1;
   Point[][] bRectPoints;
 
 ResponsiveButton chartTypeButton;
-CurveType defaultType = CurveType.LINEAR;
+int defaultType = CurveType.LINEAR;
 
 void setup() {
   size(1040, 760);
@@ -38,7 +38,7 @@ void setup() {
 
 void draw() {
   background(250);
-  
+
   if (width != prevWidth || height != prevHeight) {
     // window has been resized
     prevWidth = width;
@@ -47,11 +47,12 @@ void draw() {
     createChart();
     createButtons();
   }
+
   drawButtons();
-  // draw axes, boundingRects, and curves on seperate canveses
+  // draw axes, boundingRects, and curves on separate canvases
   chart.drawChart();
   
-  selectedBRectCanvas.clear();
+  //selectedBRectCanvas.clear();
   handleHovering();
 }
 
@@ -197,7 +198,7 @@ void loadStringsHelper() {
     labels[i - 1] = row[0];
     for (int j = 1; j < m + 1; j++) {
       // assume data are floats for now
-      if (!Float.isNaN(float(row[j]))) {
+      if (!isNaN(row[j])) {
         features[i - 1][j - 1] = float(row[j]);
       } else {
         ArrayList<String> featureValues = uniqueFeatures.get(j);
@@ -243,7 +244,7 @@ HashMap<Integer, ArrayList<String>> getCategoricalFeatures() {
     labels[i - 1] = row[0];
     for (int j = 1; j < m + 1; j++) {
       // assume data are floats for now
-      if (Float.isNaN(float(row[j]))) {
+      if (isNaN(row[j])) {
         ArrayList<String> arr;
         
         if (!uniqueFeatures.containsKey(j)) {
@@ -263,4 +264,8 @@ HashMap<Integer, ArrayList<String>> getCategoricalFeatures() {
 
 public void drawButtons() {
   chartTypeButton.drawButton();
+}
+
+boolean isNaN(String s) {
+	return !s.matches(".*\\d+.*");
 }

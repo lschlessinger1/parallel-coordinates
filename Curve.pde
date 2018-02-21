@@ -4,7 +4,7 @@ class Curve {
   boolean isSelected;
   DataPoint dataPoint;
 
-  Curve(CurveType type, color curveColor, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
+  Curve(int type, color curveColor, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
     this.initialColor = curveColor;
     this.curveColor = initialColor;
     this.dataPoint = point;
@@ -24,12 +24,12 @@ class Curve {
     }
   }
   
-  CurveSegment[] createCurveSegments(CurveType type, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
+  CurveSegment[] createCurveSegments(int type, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
     int m = axes.length;
     CurveSegment[] segments = new CurveSegment[m - 1];
     
     switch(type) {
-      case LINEAR:
+      case CurveType.LINEAR:
         for (int d = 0; d < m - 1; d++) {
           Axis axis = axes[d];
           Axis nextAxis = axes[d + 1];
@@ -64,7 +64,7 @@ class Curve {
 
         break;
       
-      case BEZIER:
+      case CurveType.BEZIER:
         for (int d = 0; d < m - 1; d++) {
           Axis axis = axes[d];
           Axis nextAxis = axes[d + 1];
@@ -155,7 +155,7 @@ class Curve {
         mainCanvas.beginDraw(); 
         curveSegment.drawSelf(curveColor, mainCanvas);
         mainCanvas.endDraw();
-      } else if (isHovered())  {
+      } else if (isHovered()) {
         selectedLines.beginDraw(); 
         curveSegment.drawSelf(curveColor, selectedLines);
         selectedLines.endDraw();

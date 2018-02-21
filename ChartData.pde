@@ -3,12 +3,12 @@ class ChartData {
   DataPoint point;
   Curve curve;
   
-  ChartData(DataPoint point, int selectedDimension, int n, CurveType type, Axis[] axes, float[] minVals, float[] maxVals) {
+  ChartData(DataPoint point, int selectedDimension, int n, int type, Axis[] axes, float[] minVals, float[] maxVals) {
     this.point = point;
     this.curve = createCurve(selectedDimension, n, type, point, axes, minVals, maxVals);
   }
   
-  Curve createCurve(int selectedDimension, int n, CurveType type, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
+  Curve createCurve(int selectedDimension, int n, int type, DataPoint point, Axis[] axes, float[] minVals, float[] maxVals) {
     // map color based on selectedDimension
     int d = selectedDimension;
     Axis axis = axes[d];

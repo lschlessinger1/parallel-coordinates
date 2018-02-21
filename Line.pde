@@ -23,11 +23,11 @@ class Line extends CurveSegment {
     // TODO: add color
     strokeWeight(2);
     if (getSelected()) {
-      canvas.stroke(c);
+      stroke(c);
     } else {
-      canvas.stroke(unselectedColor);
+      stroke(unselectedColor);
     }
-    canvas.line(p1.x, p1.y, p2.x, p2.y);
+    line(p1.x, p1.y, p2.x, p2.y);
   }
   
   float getSlope() {

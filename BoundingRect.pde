@@ -60,28 +60,28 @@ class BoundingRect {
   
   void drawBRect(PGraphics canvas) {
     // on new canvas
-    canvas.noStroke();
-    canvas.fill(250);
+    noStroke();
+    fill(250);
     // draw white padding around 
     //float pad  = 5;
     //canvas.rect(pos.x - pad, pos.y, w +2*pad, h);
-    canvas.fill(backgroundColor);
-    canvas.rect(pos.x, pos.y, w, h);
+    fill(backgroundColor);
+    rect(pos.x, pos.y, w, h);
     drawLabels(canvas);
   }
   
   void drawLabels(PGraphics canvas) {
-    canvas.stroke(0);
-    canvas.fill(20, 20, 20);
-    canvas.textAlign(CENTER);
+    stroke(0);
+    fill(20, 20, 20);
+    textAlign(CENTER);
     float padding = 12.5;
-    canvas.textSize(14);
+    textSize(14);
     if (descending) {
-      canvas.text(upperValue, pos.x + w/2, pos.y - padding);
-      canvas.text(lowerValue, pos.x + w/2, pos.y + h + padding);
+      text(upperValue, pos.x + w/2, pos.y - padding);
+      text(lowerValue, pos.x + w/2, pos.y + h + padding);
     } else {
-      canvas.text(upperValue, pos.x + w/2, pos.y - padding);
-      canvas.text(lowerValue, pos.x + w/2, pos.y + h + padding);
+      text(upperValue, pos.x + w/2, pos.y - padding);
+      text(lowerValue, pos.x + w/2, pos.y + h + padding);
     }
   }
   
