@@ -26,7 +26,7 @@ CurveType defaultType = CurveType.LINEAR;
 
 void setup() {
   size(1040, 760);
-  surface.setResizable(true);
+  //surface.setResizable(true);
   
   // load data
   loadStringsHelper();
